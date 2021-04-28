@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <boost/lexical_cast>  
 using namespace std;
 
 int b2D(int n){
@@ -75,27 +76,27 @@ int d2O(int n){
 	return ans;
 }
 
-string d2H(int n){
-	int x=1;
-	string ans = "";
-	while(x<=n)
-	x=x*16;
-	x/=16;
-	while(x>0){
-		int lastDigit = n/x;
-		 n-= 16;
-		 
-		 if(lastDigit <= 9)
-		 
-		 ans = ans + to_string(lastDigit) ;
-		 
-		 else {
-		 	char c = 'A' + lastDigit -10;
-		 	ans.push_back(c);
-		 }
-	}
-	return ans;
-}
+//string d2H(int n){
+//	int x=1;
+//	string ans = "";
+//	while(x<=n)
+//	x=x*16;
+//	x/=16;
+//	while(x>0){
+//		int lastDigit = n/x;
+//		 n-= 16;
+//		 
+//		 if(lastDigit <= 9)
+//		 
+//		 ans = ans + boost::lexical_cast<string>(lastDigit) ;
+//		 
+//		 else {
+//		 	char c = 'A' + lastDigit -10;
+//		 	ans.push_back(c);
+//		 }
+//	}
+//	return ans;
+//}
 
 int main()
 {
@@ -107,8 +108,8 @@ int main()
 //	cout<<"\nThe Octal to Decimal is:"<<o2D(n);
 //	cout<<"\nThe Hexa to Decimal is:"<<h2D(n);
 //	cout<<"\nThe Decimal to Binary is:"<<d2B(n);
-//	cout<<"\nThe Decimal to Octal is:"<<d2O(n);
-	cout<<"\nThe Decimal to Hexa is:"<<d2H(n);
+	cout<<"\nThe Decimal to Octal is:"<<d2O(n);
+//	cout<<"\nThe Decimal to Hexa is:"<<d2H(n);
 
 	return 0;
 }
