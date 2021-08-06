@@ -2,9 +2,7 @@
 #include <string>
 using namespace std;
 
-int P[100], B[100];
-void Merge(int A[], int C[], int low, int high, int mid);
-void MergeSort(int A[], int B[], int low, int high);
+int P[100], B[1000];
 
 int main()
 {
@@ -22,7 +20,7 @@ int main()
     int PointB[1000];
     for (int i = 0; i < n; i++)
     {
-        B[P[i]] = B[i];
+        PointB[P[i]] = B[i];
     }
 
     sort(P, P + n);
@@ -32,7 +30,7 @@ int main()
         if (P[i] <= e)
         {
             defeat++;
-            e += B[P[i]];
+            e += PointB[P[i]];
         }
         else
             i = n;
