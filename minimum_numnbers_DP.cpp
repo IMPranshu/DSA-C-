@@ -11,7 +11,7 @@ int MinSquare(int n)
         return n;
 
     int ans = MOD;
-    for (int i = 0; i * i <= n; i++)
+    for (int i = 1; i * i <= n; i++)
     {
         ans = min(ans, 1 + MinSquare(n - i * i));
     }
@@ -22,6 +22,6 @@ int main()
 {
     int n;
     cin >> n;
-
     cout << MinSquare(n) << endl;
+    return 0;
 }
