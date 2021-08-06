@@ -10,16 +10,22 @@ int MinSquare(int n)
     if (n == 1 || n == 2 || n == 3 || n == 0)
         return n;
 
-    int ans = MOD;
+    if (dp[n] != MOD)
+        return dp[n];
+
     for (int i = 1; i * i <= n; i++)
     {
-        ans = min(ans, 1 + MinSquare(n - i * i));
+        dp[n] = min(dp[n], 1 + MinSquare(n - i * i));
     }
-    return ans;
+    return dp[n];
 }
 
 int main()
 {
+    for (int i = 0; i < N; i++)
+    {
+        dp[i] = MOD;
+    }
     int n;
     cin >> n;
     cout << MinSquare(n) << endl;
