@@ -7,46 +7,31 @@ using namespace std;
 const int N = 1e5 + 2, MOD = 1e9 + 7;
 int dp[N];
 
+int CoinChange(vi &a, int n, int x)
+{
+    if (x == 0)
+        return 1;
+    if (x < 0)
+        return 0;
+    if (n <= 0)
+        return 0;
+
+    return CoinChange(a, n, x - a[n - 1]) + CoinChange(a, n - 1, x);
+}
 int main()
 {
 
-    int coins, value;
-    cout << "\nEnter no. of coins & Value:";
-    cin >> coins >> value;
-    cout << "\nEnter the Coins:";
-    int A[coins];
-    for (int i = 0; i < coins; i++)
-    {
-        cin >> A[i];
-    }
-    int B[coins][value];
-    for (int i = 0; i <= coins; i++)
-    {
-        for (int j = 0; j <= value; j++)
-        {
-            B[i][j] = 0;
-        }
-    }
+    int n;
+    cin >> n;
 
-    B[0][0] = 1;
-    for (int i = 1; i <= coins; i++)
+    vi a(n);
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j <= value; j++)
-        {
-            if ((j - i) > 0)
-                B[i][j] = B[i - 1][j - i] + B[j - i][i - 1];
-            else
-                B[i][j] = B[i - 1][j];
-        }
+        cin >> a[i];
     }
-    for (int i = 0; i <= coins; i++)
-    {
-        for (int j = 0; j <= value; j++)
-        {
-            cout << B[i][j] << "  ";
-        }
-        cout << endl;
-    }
+    int x;
+    cin >> x;
+    cout << CoinChange(a, n, x);
 
     return 0;
 }
