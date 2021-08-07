@@ -7,49 +7,36 @@ using namespace std;
 #define rep(i, a, b) for (int i = a; i < b; i++)
 #define ff first
 #define ss second
-#define int long long
-
-bool compare(pii p1, pii p2)
-{
-    double v1 = (double)p1.ff / p1.ss;
-    double v2 = (double)p2.ff / p2.ss;
-    return v1 > v2;
-}
-
-const int N = 1e3 + 5;
 
 int main()
 {
-
     int n;
     cin >> n;
-    vii a(n);
+
+    vi a(n);
 
     rep(i, 0, n)
     {
-        cin >> a[i].ff >> a[i].ss;
+        cin >> a[i];
     }
 
-    int w;
-    cin >> w;
-
-    sort(a.begin(), a.end(), compare);
-
+    priority_queue<int, vector<int>, greater<int>> minheap;
+    rep(i, 0, n)
+    {
+        minheap.push(a[i]);
+    }
     int ans = 0;
-    rep(i, 0, n)
+    while (minheap.size() > 1)
     {
-        if (w > a[i].ss)
-        {
-            ans += a[i].ff;
-            w -= a[i].ss;
-            continue;
-        }
-        double vw = (double)a[i].ff / a[i].ss;
-        ans += vw * w;
-        w = 0;
-        break;
+        int e1 = minheap.top();
+        minheap.pop();
+        int e2 = minheap.top();
+        minheap.pop();
+
+        ans += e1 + e2;
+        minheap.push(e1 + e2);
     }
-    cout << ans;
+    cout << ans << endl;
 
     return 0;
 }
